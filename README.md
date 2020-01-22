@@ -28,6 +28,11 @@ This UDR can have local routes to other subnets and VNETs, a default route, cust
         set nat enable
     next
 
+---
+
+![GUI version](https://raw.githubusercontent.com/fortinetclouddev/FortiGate-with-Azure-ASE/master/PolicyPicture.png)
+
+---
 
 #### 7.	  Configure FortiGate DNAT/Virtual IP to forward inbound traffic (if public access to Web app is required) to the load balancer IP of the ASE.  Optionally, you can use both FortiWeb and FortiGate.  If using both, at this step you would instead forward to FortiWeb and then configure FortiWeb to send the load balancer IP.
 
