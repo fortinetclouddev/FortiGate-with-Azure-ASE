@@ -3,7 +3,7 @@ How to provide inspection and filtering (and compliance) for Azure App Service E
 
 The broad steps involved to build an ASE environment with FortiGate inspection are as follows:
 
-### 1.	Deploy FortiGate Single VM or HA (via marketplace or more specialized template).
+#### 1.	Deploy FortiGate Single VM or HA (via marketplace or more specialized template).
 ### 2.	Deploy ASE to a unique subnet in the same VNET or a peered VNET.
 ### 3.	Optionally, deploy a ‘jumpbox’ VM for ASE management
 ### 4.	Deploy/configure Web App in ASE
