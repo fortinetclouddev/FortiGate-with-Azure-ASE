@@ -1,4 +1,4 @@
-﻿# Get current management addresses for Azure App Service Environmennt and update route table to match
+﻿# Get current management addresses for Azure App Service Environment and update route table to match
 # Init Variables:
 # Resource Group Name
 $rg = "Resource-Group-Name"
