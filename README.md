@@ -5,7 +5,8 @@ The broad steps involved to build an ASE environment with FortiGate inspection a
 
 #### 1.	Deploy FortiGate Single VM or HA (via marketplace or more specialized template).
 #### 2.	Deploy ASE to a unique subnet in the same VNET or a peered VNET.
-#### 3.	Optionally, deploy a ‘jumpbox’ VM for ASE management
+#### 3.	Deploy a ‘jumpbox’ VM for ASE management
+This step is not required, but may provide the simnplest option for ASE administration.
 #### 4.	Deploy/configure Web App in ASE
 #### 5.	Create a dedicated UDR for the ASE Subnet.  
 This UDR can have local routes to other subnets and VNETs, a default route, custom routes for ExpressRoute or Azure VPN connected networks.  Each of these routes can optionally be configured with the FortiGate(s) as the next hop.  A default route with the FortiGate(s) as next hop is recommended.  However, there are certain Azure management IPs which must not be redirected.  Hosts from these IPs will communicate directly for ASE management purposes.  It is possible to retrieve the specific list used by your ASE via Azure API calls.  The included powershell file (ASE-UDR-Update.ps1) is designed to automatically modify an existing route table with the current list of management IPs.  Alternatively, a list of these IPs and another powershell script for automating an Azure route table are available here: https://docs.microsoft.com/en-us/azure/app-service/environment/management-addresses#get-your-management-addresses-from-api
@@ -40,4 +41,5 @@ As an alternative to the "Microsoft-Azure" category, you can create a more speci
 #### 7.	  Configure FortiGate DNAT/Virtual IP to forward inbound traffic (if public access to Web app is required) to the load balancer IP of the ASE.  
 Optionally, you can use both FortiWeb and FortiGate.  If using both, at this step you would instead forward to FortiWeb and then configure FortiWeb to send the load balancer IP.
 
-#### 8.    Optionally, create an Azure Automation Account and Runbook with the ASE-UDR-Update.ps1 script to maintain the ASE route table.
+#### 8.    Create an Azure Automation Account and Runbook with the ASE-UDR-Update.ps1 script to maintain the ASE route table.
+This step is not required, but will help to keep your route table current if Azure management IPs are changed.
