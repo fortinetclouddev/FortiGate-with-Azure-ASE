@@ -43,6 +43,7 @@ FortiGate has an ISDB which is dynamically updated.  You can allow outbound comm
 ---
 
 As an alternative to the "Microsoft-Azure" category, you can create a more specific custom category using IPs for your region and platforms as defined in the Azure IP Ranges and Service Tags (https://www.microsoft.com/en-us/download/confirmation.aspx?id=56519).  A similar option - start with the above broad policy and enable full logging.  Then, monitor the communication from your ASE environment for a couple of days and collect all IPs specifically used.   
+Information on custom ISDB policies is available here: https://docs.fortinet.com/document/fortigate/6.2.0/cookbook/352916/using-custom-internet-service-in-policy
 
 #### 7.	  Configure FortiGate DNAT/Virtual IP to forward inbound traffic (if public access to Web app is required) to the load balancer IP of the ASE.  
 Optionally, you can use both FortiWeb and FortiGate.  If using both, at this step you would instead forward to FortiWeb and then configure FortiWeb to send the load balancer IP.
