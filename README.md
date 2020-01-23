@@ -1,7 +1,7 @@
 # FortiGate-with-Azure-ASE
 How to provide inspection and filtering (and compliance) for Azure App Service Environments (ASE)
 
-The broad steps involved to build an ASE environment with FortiGate inspection are as follows:
+The broad steps required to build an ASE environment with FortiGate inspection are as follows:
 
 #### 1.	Deploy FortiGate Single VM or HA (via marketplace or more specialized template).
 #### 2.	Deploy ASE to a unique subnet in the same VNET or a peered VNET.
