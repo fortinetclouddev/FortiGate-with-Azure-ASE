@@ -9,7 +9,8 @@ The broad steps involved to build an ASE environment with FortiGate inspection a
 #### 4.	Deploy/configure Web App in ASE
 #### 5.	Create a dedicated UDR for the ASE Subnet.  
 This UDR can have local routes to other subnets and VNETs, a default route, custom routes for ExpressRoute or Azure VPN connected networks.  Each of these routes can optionally be configured with the FortiGate(s) as the next hop.  A default route with the FortiGate(s) as next hop is recommended.  However, there are certain Azure management IPs which must not be redirected.  Hosts from these IPs will communicate directly for ASE management purposes.  It is possible to retrieve the specific list used by your ASE via Azure API calls.  The included powershell file (ASE-UDR-Update.ps1) is designed to automatically modify an existing route table with the current list of management IPs.  Alternatively, a list of these IPs and another powershell script for automating an Azure route table are available here: https://docs.microsoft.com/en-us/azure/app-service/environment/management-addresses#get-your-management-addresses-from-api
-#### 6.	Configure the FortiGate to allow additional outbound access for dataplane communication from the ASE.  FortiGate has an ISDB which is dynamically updated.  You can allow outbound communication using the Microsoft-Azure category.  Here’s an example policy:
+#### 6.	Configure the FortiGate to allow additional outbound access for dataplane communication from the ASE to other PaaS services.
+FortiGate has an ISDB which is dynamically updated.  You can allow outbound communication using the Microsoft-Azure category.  Here’s an example policy:
 
     edit 4
         set name "Allow ASE Out"
@@ -33,6 +34,8 @@ This UDR can have local routes to other subnets and VNETs, a default route, cust
 ![GUI version](https://raw.githubusercontent.com/fortinetclouddev/FortiGate-with-Azure-ASE/master/PolicyPicture.png)
 
 ---
+
+As an alternative to the "Microsoft-Azure" category, you can create a more specific custom category using IPs for your region and platforms as defined in the Azure IP Ranges and Service Tags (https://www.microsoft.com/en-us/download/confirmation.aspx?id=56519).  A similar option - start with the above broad policy and enable full logging.  Then, monitor the communication from your ASE environment for a couple of days and collect all IPs specifically used.   
 
 #### 7.	  Configure FortiGate DNAT/Virtual IP to forward inbound traffic (if public access to Web app is required) to the load balancer IP of the ASE.  Optionally, you can use both FortiWeb and FortiGate.  If using both, at this step you would instead forward to FortiWeb and then configure FortiWeb to send the load balancer IP.
 
