@@ -13,9 +13,9 @@ The broad steps required to build an ASE environment with FortiGate inspection a
 #### 2.	Deploy ASE to a unique subnet in the same VNET or a peered VNET.
 #### 3.	Deploy a ‘jumpbox’ VM for ASE management
 This step is not required, but may provide the simnplest option for ASE administration.
-#### 4.	Deploy/configure Web App in ASE
-#### 5.	Create a dedicated UDR for the ASE Subnet.  
+#### 4.	Create a dedicated UDR for the ASE Subnet.  
 This UDR can have local routes to other subnets and VNETs, a default route, custom routes for ExpressRoute or Azure VPN connected networks.  Each of these routes can optionally be configured with the FortiGate(s) as the next hop.  A default route with the FortiGate(s) as next hop is recommended.  However, there are certain Azure management IPs which must not be redirected.  Hosts from these IPs will communicate directly for ASE management purposes.  It is possible to retrieve the specific list used by your ASE via Azure API calls.  The included powershell file (ASE-UDR-Update.ps1) is designed to automatically modify an existing route table with the current list of management IPs.  Alternatively, a list of all possible management IPs is available here: https://docs.microsoft.com/en-us/azure/app-service/environment/management-addresses#get-your-management-addresses-from-api
+#### 5.	Deploy/configure Web App in ASE
 #### 6.	Configure the FortiGate to allow additional outbound access for dataplane communication from the ASE to other PaaS services.
 FortiGate has an ISDB which is dynamically updated.  You can allow outbound communication using the Microsoft-Azure category.  Here’s an example policy:
 
